@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+--><html lang="zh" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Structure - ServiceComb</title>
+
+
+
+
+<meta name="description" content="How the theme is organized and what all of the files are for.">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="ServiceComb">
+<meta property="og:title" content="Structure">
+
+
+  <link rel="canonical" href="http://localhost:4000/docs/structure/">
+  <meta property="og:url" content="http://localhost:4000/docs/structure/">
+
+
+
+  <meta property="og:description" content="How the theme is organized and what all of the files are for.">
+
+
+
+  <meta name="twitter:site" content="@willemjiang">
+  <meta name="twitter:title" content="Structure">
+  <meta name="twitter:description" content="How the theme is organized and what all of the files are for.">
+  <meta name="twitter:url" content="http://localhost:4000/docs/structure/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-06-08T23:38:37+08:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "ServiceComb",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="ServiceComb Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">ServiceComb</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/quick-start-guide/">快速入门</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/user-guide/">用户手册</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/community">社区</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/developers">开发</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">博文</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">关于</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">用户手册</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/quick-start-guide/" class="">快速入门</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/motivation/" class="">ServiceComb是什么</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/jaxrs-sample/" class="">JAX RS例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/spring-mvc-sample/" class="">Spring MVC例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/pojo-sample/" class="">透明RPC例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/codefirst-sample/" class="">CodeFirst例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/faq/" class="">常见问题</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">开发配置</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/dependency-config/" class="">依赖包配置</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/sdk-config/" class="">SDK配置</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">通信通道</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/rest-transport/" class="">rest方式</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/highway-transport/" class="">highway方式</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">处理链开发</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/handler-summary/" class="">概述</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/service-management" class="">服务治理</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/load-balance/" class="">负载均衡</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/qps/" class="">QPS流控</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/tcc-trans" class="">TCC事务</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">处理链开发</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/handler-summary/" class="">概述</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/service-management" class="">服务治理</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/load-balance/" class="">负载均衡</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/qps/" class="">QPS流控</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/tcc-trans/" class="">TCC事务</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">部署</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/deployment/" class="">如何部署</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Structure">
+    <meta itemprop="description" content="How the theme is organized and what all of the files are for.">
+    <meta itemprop="datePublished" content="June 08, 2017">
+    <meta itemprop="dateModified" content="October 06, 2016">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Structure
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Nothing clever here <img class="emoji" title=":wink:" alt=":wink:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f609.png" height="20" width="20" align="absmiddle">. Layouts, data files, and includes are all placed in their default locations. Stylesheets and scripts in <code class="highlighter-rouge">assets</code>, and a few development related files in the project’s root directory.</p>
+
+<p class="notice--info"><strong>Please note:</strong> If you installed Minimal Mistakes via the Ruby Gem method, theme files like <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_sass</code>, and <code class="highlighter-rouge">/assets/</code> will be missing. This is normal as they are bundled with the <a href="https://rubygems.org/gems/minimal-mistakes-jekyll"><code class="highlighter-rouge">minimal-mistakes-jekyll</code></a> Ruby gem.</p>
+
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>minimal-mistakes
+├── _data                      <span class="c"># data files for customizing the theme</span>
+|  ├── navigations.yml         <span class="c"># main navigation links</span>
+|  └── ui-text.yml             <span class="c"># text used throughout the theme's UI</span>
+├── _includes
+|  ├── analytics-providers     <span class="c"># snippets for analytics (Google and custom)</span>
+|  ├── comments-providers      <span class="c"># snippets for comments (Disqus, Facebook, Google+, and custom)</span>
+|  ├── footer                  <span class="c"># custom snippets to add to site footer</span>
+|  ├── head                    <span class="c"># custom snippets to add to site head</span>
+|  ├── base_path               <span class="c"># site.url + site.baseurl shortcut</span>
+|  ├── feature_row             <span class="c"># feature row helper</span>
+|  ├── gallery                 <span class="c"># image gallery helper</span>
+|  ├── group-by-array          <span class="c"># group by array helper for archives</span>
+|  ├── nav_list                <span class="c"># navigation list helper</span>
+|  ├── toc                     <span class="c"># table of contents helper</span>
+|  └── ...
+├── _layouts
+|  ├── archive-taxonomy.html   <span class="c"># tag/category archive for Jekyll Archives plugin</span>
+|  ├── archive.html            <span class="c"># archive listing documents in an array</span>
+|  ├── compress.html           <span class="c"># compresses HTML in pure Liquid</span>
+|  ├── default.html            <span class="c"># base for all other layouts</span>
+|  ├── home.html               <span class="c"># home page</span>
+|  ├── single.html             <span class="c"># single document (post/page/etc)</span>
+|  └── splash.html             <span class="c"># splash page</span>
+├── _sass                      <span class="c"># SCSS partials</span>
+├── assets
+|  ├── css
+|  |  └── main.scss            <span class="c"># main stylesheet, loads SCSS partials from _sass</span>
+|  ├── fonts
+|  |  └── fontawesome-webfont  <span class="c"># Font Awesome webfonts</span>
+|  ├── images                  <span class="c"># image assets for posts/pages/collections/etc.</span>
+|  ├── js
+|  |  ├── plugins              <span class="c"># jQuery plugins</span>
+|  |  ├── vendor               <span class="c"># vendor scripts</span>
+|  |  ├── _main.js             <span class="c"># plugin settings and other scripts to load after jQuery</span>
+|  |  └── main.min.js          <span class="c"># optimized and concatenated script file loaded before &lt;/body&gt;</span>
+├── _config.yml                <span class="c"># site configuration</span>
+├── Gemfile                    <span class="c"># gem file dependencies</span>
+├── index.html                 <span class="c"># paginated home page showing recent posts</span>
+└── package.json               <span class="c"># NPM build scripts</span>
+</code></pre>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> 最新的:</strong> <time datetime="2016-10-06">October 06, 2016</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/docs/quick-start-guide/" class="pagination--pager" title="快速入门
+">向前</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <div align="center" style="margin: 1em 0;">
+    <ins class="adsbygoogle" style="display:block; border-bottom: initial;" data-ad-client="ca-pub-7328585512091257" data-ad-slot="3049671934" data-ad-format="auto"></ins>
+    </div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/willemjiang"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2017 ServiceComb. 技术来自于 <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

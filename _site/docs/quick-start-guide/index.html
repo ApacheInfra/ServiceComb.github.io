@@ -1,0 +1,689 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="zh" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>快速入门 - ServiceComb</title>
+
+
+
+
+<meta name="description" content="如何利用JavaChassis迅速创建微服务.">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="ServiceComb">
+<meta property="og:title" content="快速入门">
+
+
+  <link rel="canonical" href="http://localhost:4000/docs/quick-start-guide/">
+  <meta property="og:url" content="http://localhost:4000/docs/quick-start-guide/">
+
+
+
+  <meta property="og:description" content="如何利用JavaChassis迅速创建微服务.">
+
+
+
+  <meta name="twitter:site" content="@willemjiang">
+  <meta name="twitter:title" content="快速入门">
+  <meta name="twitter:description" content="如何利用JavaChassis迅速创建微服务.">
+  <meta name="twitter:url" content="http://localhost:4000/docs/quick-start-guide/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-06-08T23:38:37+08:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "ServiceComb",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="ServiceComb Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/">ServiceComb</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/quick-start-guide/">快速入门</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/user-guide/">用户手册</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/community">社区</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/docs/developers">开发</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">博文</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">关于</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">用户手册</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/quick-start-guide/" class="active">快速入门</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/motivation/" class="">ServiceComb是什么</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/jaxrs-sample/" class="">JAX RS例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/spring-mvc-sample/" class="">Spring MVC例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/pojo-sample/" class="">透明RPC例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/codefirst-sample/" class="">CodeFirst例子</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/faq/" class="">常见问题</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">开发配置</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/dependency-config/" class="">依赖包配置</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/sdk-config/" class="">SDK配置</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">通信通道</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/rest-transport/" class="">rest方式</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/highway-transport/" class="">highway方式</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">处理链开发</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/handler-summary/" class="">概述</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/service-management" class="">服务治理</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/load-balance/" class="">负载均衡</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/qps/" class="">QPS流控</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/tcc-trans" class="">TCC事务</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">处理链开发</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/handler-summary/" class="">概述</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/service-management" class="">服务治理</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/load-balance/" class="">负载均衡</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/qps/" class="">QPS流控</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/tcc-trans/" class="">TCC事务</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">部署</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="http://localhost:4000/docs/deployment/" class="">如何部署</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="快速入门">
+    <meta itemprop="description" content="如何利用JavaChassis迅速创建微服务.">
+    <meta itemprop="datePublished" content="June 08, 2017">
+    <meta itemprop="dateModified" content="June 06, 2017">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">快速入门
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>这个快速入门指南会提供详细的指令，帮助您迅速创建微服务。</p>
+
+<aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> 在本页上</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#前提" id="markdown-toc-前提">前提</a></li>
+  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
+  <li><a href="#简单示例" id="markdown-toc-简单示例">简单示例</a>    <ul>
+      <li><a href="#启动service-center" id="markdown-toc-启动service-center">启动Service Center</a></li>
+      <li><a href="#例子代码" id="markdown-toc-例子代码">例子代码</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </nav>
+</aside>
+
+<h2 id="前提">前提</h2>
+<p>以下软件需要被安装:</p>
+
+<ol>
+  <li>JDK 1.8</li>
+  <li>Maven 3.5.0</li>
+</ol>
+
+<h2 id="安装">安装</h2>
+
+<p>通过Github下载Java Chassis源码并Build:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>git clone https://github.com/ServiceComb/java-chassis.git
+<span class="gp">&gt; </span><span class="nb">cd </span>java-chassis
+<span class="gp">&gt; </span>mvn clean install
+</code></pre>
+</div>
+
+<h2 id="简单示例">简单示例</h2>
+<h3 id="启动service-center">启动Service Center</h3>
+
+<p>有两种方式运行Service Center:</p>
+
+<p>1.通过运行二进制文件：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>curl -o etcd.zip <span class="s1">'https://github-production-release-asset-2e65be.s3.amazonaws.com/11225014/28ead7c6-3c88-11e7-83a2-338ef5ea1ba9?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20170607%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20170607T150952Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=1f2be15362d98feb9306b7a19c1c713953db4b552ec58bf258d1927f725f2966&amp;X-Amz-SignedHeaders=host&amp;actor_id=20241845&amp;response-content-disposition=attachment%3B%20filename%3Detcd-v3.1.8-darwin-amd64.zip&amp;response-content-type=application%2Foctet-stream'</span>
+<span class="gp">&gt; </span>unzip -o etcd.zip
+<span class="gp">&gt; </span><span class="nb">cd </span>etcd/
+<span class="gp">&gt; </span>./etcd
+<span class="gp">&gt; </span>go get github.com/ServiceComb/service-center
+<span class="gp">&gt; </span><span class="nb">cd</span> <span class="nv">$GOPATH</span>/src/github.com/ServiceComb/service-center/
+<span class="gp">&gt; </span>go build
+</code></pre>
+</div>
+<p class="notice--warning"><strong>Note:</strong>首先下载3.X版本之上的ETCD的二进制版本并运行（当前例子实在MAC之下），然后下载Service-center源码并Build。</p>
+
+<p>将配置文件etc/conf/app.conf移到文件夹conf下并修改相应的参数</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>manager_cluster = "127.0.0.1:2379"
+httpport = 9980
+</code></pre>
+</div>
+<p>manager_cluster为ETCT地址</p>
+
+<p>httpport为Service Center绑定的端口</p>
+
+<p>运行Service Center二进制文件</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>./service-center
+</code></pre>
+</div>
+
+<p>2.通过docker镜像运行Service Center</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>docker pull seanyinx/sc
+<span class="gp">&gt; </span>docker run -d -p 9980:9980 seanyinx/sc:latest
+</code></pre>
+</div>
+
+<p class="notice--warning"><strong>Note:</strong> Service Center运行后的绑定IP为http://127.0.0.1:9980。</p>
+
+<h3 id="例子代码">例子代码</h3>
+
+<p><strong>服务接口</strong></p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Hello</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="nf">sayHi</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p><strong>服务实现</strong></p>
+
+<p>实现服务契约接口HelloImpl.java</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloImpl</span> <span class="kd">implements</span> <span class="n">Hello</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHi</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Hello "</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p><strong>服务发布</strong></p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:p=</span><span class="s">"http://www.springframework.org/schema/p"</span>
+	<span class="na">xmlns:util=</span><span class="s">"http://www.springframework.org/schema/util"</span> <span class="na">xmlns:cse=</span><span class="s">"http://www.huawei.com/schema/paas/cse/rpc"</span>
+	<span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"</span>
+		<span class="err">http://www.springframework.org/schema/beans</span> <span class="err">classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd</span>
+		<span class="err">http://www.springframework.org/schema/context</span> <span class="err">http://www.springframework.org/schema/context/spring-context-3.0.xsd</span>
+		<span class="err">http://www.huawei.com/schema/paas/cse/rpc</span> <span class="err">classpath:META-INF/spring/spring-paas-cse-rpc-1.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;cse:rpc-schema</span> <span class="na">schema-id=</span><span class="s">"hello"</span>
+		<span class="na">implementation=</span><span class="s">"io.servicecomb.demo.server.HelloImpl"</span><span class="nt">&gt;&lt;/cse:rpc-schema&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre>
+</div>
+
+<p><strong>调用声明</strong></p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:p=</span><span class="s">"http://www.springframework.org/schema/p"</span>
+    <span class="na">xmlns:util=</span><span class="s">"http://www.springframework.org/schema/util"</span> <span class="na">xmlns:cse=</span><span class="s">"http://www.huawei.com/schema/paas/cse/rpc"</span>
+    <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"</span>
+        <span class="err">http://www.springframework.org/schema/beans</span> <span class="err">classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd</span>
+        <span class="err">http://www.springframework.org/schema/context</span> <span class="err">http://www.springframework.org/schema/context/spring-context-3.0.xsd</span>
+        <span class="err">http://www.huawei.com/schema/paas/cse/rpc</span> <span class="err">classpath:META-INF/spring/spring-paas-cse-rpc-1.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cse:rpc-reference</span> <span class="na">id=</span><span class="s">"hello"</span> <span class="na">schema-id=</span><span class="s">"hello"</span>
+        <span class="na">microservice-name=</span><span class="s">"helloserver"</span><span class="nt">&gt;&lt;/cse:rpc-reference&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+
+</code></pre>
+</div>
+
+<p><strong>服务调用</strong></p>
+
+<p>调用端在加载完日志配置、sdk配置后，就可以对服务进行远程调用了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public class SimpleClient {
+	...
+	System.out.println(hello.sayHi("servicecomb"))
+}
+</code></pre>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> 最新的:</strong> <time datetime="2017-06-06">June 06, 2017</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">向前</a>
+    
+    
+      <a href="http://localhost:4000/docs/structure/" class="pagination--pager" title="Structure
+">向后</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <div align="center" style="margin: 1em 0;">
+    <ins class="adsbygoogle"
+         style="display:block; border-bottom: initial;"
+         data-ad-client="ca-pub-7328585512091257"
+         data-ad-slot="3049671934"
+         data-ad-format="auto"></ins>
+    </div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/willemjiang"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 ServiceComb. 技术来自于 <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
