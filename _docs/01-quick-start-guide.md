@@ -79,6 +79,80 @@ httpport为Service Center绑定的端口
 
 ### 例子代码
 
+**服务契约配置**
+
+将服务契约文件放置\src\main\resources\microservices\hello\hello.yaml
+
+```yaml
+swagger: '2.0'
+info:
+  title: hello
+  version: 1.0.0
+  x-java-interface: io.servicecomb.demo.Hello
+basePath: /pojo/rest/hello
+produces:
+  - application/json
+
+paths:
+  /sayhi:
+    post:
+      operationId: sayHi
+      parameters:
+        - name: name
+          in: body
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: asdf
+          schema:
+            type: string
+        default:
+          description: asf
+          schema:
+            type: string
+```
+**Note:** 推荐使用Swagger Editor工具来编写契约，工具链接：[http://swagger.io/swagger-editor/](swagger-editor)
+{: .notice--warning}
+
+**依赖包配置**
+
+```xml
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>io.servicecomb</groupId>
+      <artifactId>java-chassis-dependencies</artifactId>
+      <version>0.1.0-m2-SNAPSHOT</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+**服务端SDK配置**
+
+```yaml
+APPLICATION_ID: hellotest
+service_description:
+  name: hello   # 为服务名，确保app内部唯一
+  version: 0.0.1 # 微服务版本号
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:9980 # 服务中心地址
+  rest:
+    address: 0.0.0.0:8080
+  highway:
+    address: 0.0.0.0:7070
+```
+
+**Note:** SDK配置文件路径为： \src\main\resources\microservice.yaml
+{: .notice--warning}
+
+
 **服务接口**
 
 ```java
@@ -98,6 +172,22 @@ public class HelloImpl implements Hello {
     }
 }
 ```
+
+**服务启动代码**
+
+
+```java
+public class SimpleServer {
+
+        public static void main(String[] args) throws Exception {
+            Log4jUtils.init();
+            BeanUtils.init();
+        }
+
+}
+```
+
+
 **服务发布**
 
 ```xml
@@ -114,6 +204,30 @@ public class HelloImpl implements Hello {
 		implementation="io.servicecomb.demo.server.HelloImpl"></cse:rpc-schema>
 </beans>
 ```
+
+**调用端SDK配置**
+
+```yaml
+APPLICATION_ID: hellotest
+service_description:
+  name: helloClient
+  version: 0.0.1
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:9980
+  handler:
+    chain:
+      Consumer:
+        default: loadbalance
+  references:
+    hello:
+      version-rule: 0.0.1
+```
+
+**Note:** SDK配置文件路径为： \src\main\resources\microservice.yaml
+{: .notice--warning}
+
 
 **调用声明**
 
@@ -138,8 +252,21 @@ public class HelloImpl implements Hello {
 调用端在加载完日志配置、sdk配置后，就可以对服务进行远程调用了。
 
 ```
+@Component
 public class SimpleClient {
-	...
-	System.out.println(hello.sayHi("servicecomb"))
+
+    @RpcReference(microserviceName = "hello", schemaId = "hello")
+    private static Hello hello;
+
+    public static void main(String[] args) throws Exception {
+        init();
+        System.out.println(hello.sayHi("Java Chassis"));
+    }
+
+    public static void init() throws Exception {
+        Log4jUtils.init();
+        BeanUtils.init();
+    }
+
 }
 ```
