@@ -1,6 +1,6 @@
 ---
 title: "SpringMvc 例子"
-permalink: /docs/springmvc-sample/
+permalink: /docs/spring-mvc-sample/
 excerpt: "如何利用springmvc模式迅速创建微服务."
 last_modified_at: 2017-06-06T10:01:43-04:00
 redirect_from:
