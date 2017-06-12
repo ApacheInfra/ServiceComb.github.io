@@ -20,7 +20,7 @@ docs:
       - title: "快速入门"
         url: /docs/quick-start-guide/
       - title: "ServiceComb是什么"
-        url: /docs/motivation/
+        url: /docs/user-guide/
       - title: "JAX RS例子"
         url: /docs/jaxrs-sample/
       - title: "Spring MVC例子"
@@ -51,26 +51,11 @@ docs:
       - title: "概述"
         url: /docs/handler-summary/
       - title: "服务治理"
-        url: /docs/service-management
+        url: /docs/service-management/
       - title: "负载均衡"
         url: /docs/load-balance/
       - title: "QPS流控"
         url: /docs/qps/
-      - title: "TCC事务"
-        url: /docs/tcc-trans 
-
-  - title: 处理链开发
-    children:
-      - title: "概述"
-        url: /docs/handler-summary/
-      - title: "服务治理"
-        url: /docs/service-management
-      - title: "负载均衡"
-        url: /docs/load-balance/
-      - title: "QPS流控"
-        url: /docs/qps/
-      - title: "TCC事务"
-        url: /docs/tcc-trans/ 
 
   - title: 部署
     children:
