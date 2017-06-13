@@ -53,7 +53,7 @@ cse.isolation.Provider.DemoService.hello.sayHello.enabled
 
 |类|配置项|默认配置值参考|说明|
 |:----:|:----:|:----:|:-----:|
-|隔离||cse.isolation.timeout.enabled|FALSE|是否启用超时检测。|
+|隔离|cse.isolation.timeout.enabled|FALSE|是否启用超时检测。|
 |隔离|cse.isolation.timeoutInMilliseconds|30000|超时时间，超过时间，记录一次错误。|
 |隔离|cse.isolation.maxConcurrentRequests|10|通过并发数检测错误。配置最大并发数。|
 |熔断|cse.circuitBreaker.enabled|TRUE|是否启用熔断措施。|
