@@ -7,7 +7,7 @@ redirect_from:
   - /theme-setup/
 ---
 
-这个快速入门指南会帮助您迅速创建微服务实例。
+这个快速入门指南会帮助您迅速进行微服务业务开发。
 
 {% include toc %}
 

@@ -22,10 +22,6 @@ redirect_from:
 **Note:**SDK开发指南里面描述的都是技术概念，最终用户并不会用到这里的概念。系统提供的治理功能请参考治理中心的文档说明。
 {: .notice--warning}
 
-1. JDK 1.8
-2. Maven 3.5.0 
-
-
 ## 配置项生效范围
 
 - 按照类型(type)：配置项能够针对Provider, Consumer进行配置。

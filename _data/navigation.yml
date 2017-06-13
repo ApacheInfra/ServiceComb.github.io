@@ -11,7 +11,14 @@ main:
   - title: "博文"
     url: /year-archive/
   - title: "关于"
-    url: /about/
+    url: /about/project
+
+about:
+  - title: "ServiceComb介绍"
+    url: /docs/motivation/
+  - title: "团队信息"
+    url: /about/team/
+
 
 docs:
   - title: "用户手册"

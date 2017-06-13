@@ -41,6 +41,7 @@ Java Chassis微服务开发框架组件组成如表所示:
 |运行模型|handler-bizkeeper|是| 服务治理相关的功能，比如隔离、熔断、容错。|
 |运行模型|handler-tracing|是| 调用链跟踪模块，对接监控系统，吐出打点数据。|
 |运行模型|handler-tcc|是| 提供TCC事务开发管理能力。|
+<<<<<<< HEAD
 |通用模块|common-javassist|是| 通用代理模块。|
 |通用模块|common-protobuf|是| 通用protobuf模块。|
 |通用模块|common-rest|是| 通用rest模块。
@@ -48,3 +49,5 @@ Java Chassis微服务开发框架组件组成如表所示:
 |通用模块|foundation-config|是| 基础配置模块。|
 |通用模块|common-rest|是| 通用rest模块。|
 |通用模块|common-rest|是| 通用rest模块。|
+=======
+>>>>>>> 4d9e4cc5d7047b1cb47c43ca23dc01d2ffe29a3c

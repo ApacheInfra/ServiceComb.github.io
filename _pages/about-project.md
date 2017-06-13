@@ -1,5 +1,5 @@
 ---
-permalink: /about
+permalink: /about/project
 title: "项目介绍"
 excerpt: "项目介绍"
 last_modified_at: 2017-06-7T14:28:13+08:00
