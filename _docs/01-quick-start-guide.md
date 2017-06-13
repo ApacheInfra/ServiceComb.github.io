@@ -19,17 +19,6 @@ redirect_from:
 2. Maven 3.5.0 
 
 
-## 安装
-
-通过Github下载Java Chassis源码并Build:
-
-```bash
-> git clone https://github.com/ServiceComb/java-chassis.git
-> cd java-chassis
-> mvn clean install
-```
-
-
 ## 简单示例
 ### 启动Service Center
 

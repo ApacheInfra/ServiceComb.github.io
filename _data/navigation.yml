@@ -21,6 +21,8 @@ docs:
         url: /docs/quick-start-guide/
       - title: "ServiceComb是什么"
         url: /docs/user-guide/
+      - title: "如何启动Service Center"
+        url: /docs/start-sc/
       - title: "JAX RS例子"
         url: /docs/jaxrs-sample/
       - title: "Spring MVC例子"
