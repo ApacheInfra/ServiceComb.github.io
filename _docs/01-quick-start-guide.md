@@ -25,34 +25,21 @@ redirect_from:
 有两种方式运行Service Center:
 
 1.通过运行二进制文件：
-
-下载最新的[ETCD的release版本](https://github.com/coreos/etcd/releases) 以及[Service Center的release版本](https://github.com/servicecomb/service-center/releases/)
-
-**Note:**首先下载3.X版本之上的ETCD的二进制版本并运行，然后下载Service-center的release版本的源码并Build。
-{: .notice--warning}
-
-
-将配置文件etc/conf/app.conf移到文件夹conf/下并修改相应的参数
-
+如果在windows本地开发，可以直接下载从[release](https://github.com/servicecomb/service-center/releases/)页面下载Service Center运行包（service-center-xxx-windows-amd64.zip）。
+解压直接运行启动脚本：
 ```
-manager_cluster = "127.0.0.1:2379" #manager_cluster为ETCT地址
-httpport = 9980 #httpport为Service Center绑定的端口
+start.bat
 ```
 
-运行Service Center二进制文件
-
-```bash
-> ./service-center
-```
 
 2.通过docker镜像运行Service Center
 
 ```bash
-> docker pull seanyinx/sc
-> docker run -d -p 9980:9980 seanyinx/sc:latest
+docker pull tank2428/servicecenter:xxx
+docker run -d -p 30100:30100 tank2428/servicecenter:xxx
 ```
 
-**Note:** Service Center运行后的绑定IP为http://127.0.0.1:9980。
+**Note:** Service Center运行后的绑定IP为http://127.0.0.1:30100。
 {: .notice--warning}
 
 ### 例子代码
