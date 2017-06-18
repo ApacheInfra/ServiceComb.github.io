@@ -18,7 +18,7 @@ redirect_from:
 
 2. maven 3.5 (https://maven.apache.org/download.cgi)
 
-3 Docker(https://www.docker.com/community-edition#/download)
+3. Docker(https://www.docker.com/community-edition#/download)
 
 4. Docker Toolbox  https://www.docker.com/products/docker-toolbox (Win 10 Professional/Enterprise 64-bit 或 Apple Mac OS Yosemite 10.10.3以上无需安装) 
 
