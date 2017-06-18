@@ -7,7 +7,7 @@ redirect_from:
   - /theme-setup/
 ---
 
-这个快速入门指南会帮助您迅速进行微服务业务开发。
+这个快速入门指南会帮助您迅速进行微服务业务开发。JavaChassis支持三种开发模式，此处通过POJO开发模式进行示例讲解，关于支持的SpringMVC/Jaxrs两种开发模式，请参考详细的开发指导。
 
 {% include toc %}
 
@@ -19,19 +19,17 @@ redirect_from:
 2. maven 3.5
 https://maven.apache.org/download.cgi
 
-3.Docker
-
-3.1 Docker
+3 Docker
 https://www.docker.com/community-edition#/download
 
-3.2 Docker Toolbox
+4. Docker Toolbox
 https://www.docker.com/products/docker-toolbox (Win 10 Professional/Enterprise 64-bit 或 Apple Mac OS Yosemite 10.10.3以上无需安装) 
 
-4. 下载Docker镜像
+5. 下载Docker镜像
 docker pull openjdk:8-jre-alpine
 docker pull servicecomb/service-center:xxx
 
-5. 下载示例代码库，运行mvn compile获取项目所需的依赖
+6. 下载示例代码库，运行mvn compile获取项目所需的依赖
 https://github.com/TankTian/servicecomb-helloword
 
 
