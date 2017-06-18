@@ -16,14 +16,11 @@ redirect_from:
 
 1. JDK 1.8 
 
-2. maven 3.5
-https://maven.apache.org/download.cgi
+2. maven 3.5 (https://maven.apache.org/download.cgi)
 
-3 Docker
-https://www.docker.com/community-edition#/download
+3 Docker(https://www.docker.com/community-edition#/download)
 
-4. Docker Toolbox
-https://www.docker.com/products/docker-toolbox (Win 10 Professional/Enterprise 64-bit 或 Apple Mac OS Yosemite 10.10.3以上无需安装) 
+4. Docker Toolbox  https://www.docker.com/products/docker-toolbox (Win 10 Professional/Enterprise 64-bit 或 Apple Mac OS Yosemite 10.10.3以上无需安装) 
 
 5. 下载Docker镜像
 docker pull openjdk:8-jre-alpine
