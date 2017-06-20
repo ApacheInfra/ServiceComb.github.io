@@ -144,7 +144,7 @@ service_description:
 cse:
   service:
     registry:
-      address: http://sc.servicecomb.io:9980
+      address: http://sc.servicecomb.io:30100
   highway:
     address: 0.0.0.0:7070
   rest:
@@ -314,7 +314,7 @@ service_description:
 cse:
   service:
     registry:
-      address: http://sc.servicecomb.io:9980
+      address: http://sc.servicecomb.io:30100
   rest:
     address: 0.0.0.0:8090
   handler:
@@ -367,9 +367,11 @@ public interface AuthenticationService {
 ```java
 @RestSchema(schemaId = "authenticationRestEndpoint")
 @Controller
-class AuthenticationController {
+@RequestMapping("/rest")
+public class AuthenticationController {
 
-  static final String TOKEN_PREFIX = "Bearer ";
+  private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+
   static final String USERNAME = "username";
   static final String PASSWORD = "password";
   static final String TOKEN = "token";
@@ -381,23 +383,47 @@ class AuthenticationController {
     this.authenticationService = authenticationService;
   }
 
-  @RequestMapping(value = "/login", method = POST)
-  ResponseEntity<String> login(
+  @RequestMapping(value = "/login", method = POST, produces = TEXT_PLAIN_VALUE)
+  public ResponseEntity<String> login(
       @RequestParam(USERNAME) String username,
       @RequestParam(PASSWORD) String password) {
 
+    logger.info("Received login request from user {}", username);
     String token = authenticationService.authenticate(username, password);
     HttpHeaders headers = new HttpHeaders();
     headers.add(AUTHORIZATION, TOKEN_PREFIX + token);
 
+    logger.info("Authenticated user {} successfully", username);
     return new ResponseEntity<>("Welcome, " + username, headers, OK);
   }
 
-  @RequestMapping(value = "/validate", method = POST)
+  @RequestMapping(value = "/validate", method = POST, consumes = APPLICATION_JSON_UTF8_VALUE, produces = TEXT_PLAIN_VALUE)
   @ResponseBody
-  String validate(@RequestParam(TOKEN) String token) {
+  public String validate(@RequestBody Token token) {
+    logger.info("Received validation request of token {}", token);
+    return authenticationService.validate(token.getToken());
+  }
+}
 
-    return authenticationService.validate(token);
+class Token {
+  private String token;
+
+  Token() {
+  }
+
+  Token(String token) {
+    this.token = token;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  @Override
+  public String toString() {
+    return "Token{" +
+        "token='" + token + '\'' +
+        '}';
   }
 }
 ```
@@ -425,7 +451,7 @@ service_description:
 cse:
   service:
     registry:
-      address: http://sc.servicecomb.io:9980
+      address: http://sc.servicecomb.io:30100
   rest:
     address: 0.0.0.0:9090
 ```
@@ -449,25 +475,31 @@ cse:
 ```
 
 ### 用户认证服务
-当用户发送非登录请求时，我们首先需要验证用户合法，在如下服务中，我们通过 `LoadBalancerClient` 获取**门卫**联系方式，
-然后发送用户token给**门卫**进行认证。`ServiceComb` 的 `spring-boot-starter-discovery` 提供了相应 `LoadBalancerClient` 
-实现查询[Service Center](https://github.com/ServiceComb/service-center)中的服务注册信息。
+当用户发送非登录请求时，我们首先需要验证用户合法，在如下服务中，我们通过**告示栏**获取**门卫**联系方式，
+然后发送用户token给**门卫**进行认证。
+
+`ServiceComb` 提供了相应 `RestTemplate` 实现查询[Service Center](https://github.com/ServiceComb/service-center)
+中的服务注册信息，只需在地址中以如下格式包含被调用的服务名 
+
+```html
+cse://doorman/path/to/rest/endpoint
+```
+
+`ServiceComb` 将自动查询对应服务并发送请求到地址中的服务端点。
 
 ```java
 @Service
 public class AuthenticationService {
 
   private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+  private static final String DOORMAN_ADDRESS = "cse://doorman";
 
   private final RestTemplate restTemplate;
-  private final LoadBalancerClient loadBalancer;
 
-  @Autowired
-  AuthenticationService(LoadBalancerClient loadBalancer) {
-    this.loadBalancer = loadBalancer;
-    restTemplate = new RestTemplate();
+  AuthenticationService() {
+    this.restTemplate = RestTemplateBuilder.create();
 
-    restTemplate.setErrorHandler(new ResponseErrorHandler() {
+    this.restTemplate.setErrorHandler(new ResponseErrorHandler() {
       @Override
       public boolean hasError(ClientHttpResponse clientHttpResponse) throws IOException {
         return false;
@@ -481,8 +513,9 @@ public class AuthenticationService {
 
   @HystrixCommand(fallbackMethod = "timeout")
   public ResponseEntity<String> validate(String token) {
+    logger.info("Validating token {}", token);
     ResponseEntity<String> responseEntity = restTemplate.postForEntity(
-        doormanAddress() + "/validate",
+        DOORMAN_ADDRESS + "/rest/validate",
         validationRequest(token),
         String.class
     );
@@ -499,18 +532,11 @@ public class AuthenticationService {
     return new ResponseEntity<>(REQUEST_TIMEOUT);
   }
 
-  private String doormanAddress() {
-    return loadBalancer.choose("doorman").getUri().toString();
-  }
-
-  private HttpEntity<MultiValueMap<String, String>> validationRequest(String token) {
+  private HttpEntity<Token> validationRequest(String token) {
     HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+    headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-    MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-    map.add("token", token);
-
-    return new HttpEntity<>(map, headers);
+    return new HttpEntity<>(new Token(token), headers);
   }
 }
 ```
@@ -645,7 +671,7 @@ service_description:
 cse:
   service:
     registry:
-      address: http://sc.servicecomb.io:9980
+      address: http://sc.servicecomb.io:30100
 ```
 
 ## 项目归档 (Project Archive)
