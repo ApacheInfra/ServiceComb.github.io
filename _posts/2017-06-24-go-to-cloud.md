@@ -31,7 +31,7 @@ redirect_from:
 ![micro service design]({{ site.url }}{{ site.baseurl }}/assets/images/micro-service-design.png){: .align-center}
 
 ### 创建微服务: 单体应用--->微服务应用
-![micro service structure]({{ site.url }}{{ site.baseurl }}/assets/images/micro-service-structure.png){: .align-center}
+![micro service structure]({{ site.url }}{{ site.baseurl }}/assets/images/micro-service-structure.PNG){: .align-center}
 
 ### 简单4步ServiceComb帮你完成微服务化改造
 #### Step 1: POM引入对ServiceComb的依赖
