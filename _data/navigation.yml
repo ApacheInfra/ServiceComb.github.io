@@ -6,7 +6,7 @@ t:
         url: /docs/quick-start-guide/
       - title: "Users"
         url: /docs/user-guide/
-      - title: "Develops"
+      - title: "Developers"
         url: /developers/developer-guide/
       - title: "Community"
         url: /about/community/
@@ -18,7 +18,7 @@ t:
         url: /cn/
 
     developers:
-      - title: "Develop Guide"
+      - title: "Developer Guide"
         url: /developers/developer-guide/
         children:
           - title: "Coding Style"

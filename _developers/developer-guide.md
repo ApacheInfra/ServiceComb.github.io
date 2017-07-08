@@ -1,9 +1,9 @@
 ---
-title: "Develop Guide"
+title: "Developer Guide"
 lang: en
 ref: developer_guide
 permalink: /developers/developer-guide/
-excerpt: "Develop Guide"
+excerpt: "Developer Guide"
 last_modified_at: 2017-06-24T19:18:43+08:00
 ---
 
