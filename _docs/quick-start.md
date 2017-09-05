@@ -44,7 +44,7 @@ cd webapp; mvn spring-boot:run
 ```
 3.  Verify the application.
 
-        Visit <a>http://localhost:8888</a> in browser, get web page as following, then input your information of Height and weight.
+    Visit <a>http://localhost:8888</a> in browser, get web page as following, then input your information of Height and weight to get your BMI.
 
 ![website of BMI](/assets/images/bmi-interface.png){: .align-center}
 
