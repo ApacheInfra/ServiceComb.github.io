@@ -37,10 +37,9 @@ The workflow of the application is shown as follows:
 Note that the dotted lines indicate the process of service registration and discovery.
 
 ## Run microservice application
-1. Get BMI codes.
+1. Enter BMI codes directory.
 ```bash
-git clone https://github.com/ServiceComb/ServiceComb-Java-Chassis.git
-cd ServiceComb-Java-Chassis/samples/bmi
+cd samples/bmi
 ```
 2. Run microservices.
 ```bash
