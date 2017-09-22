@@ -21,8 +21,8 @@ redirect_from:
 |loadbalance|handler-loadbalance|Consumer|提供客户端路由发现、负载均衡。|
 |bizkeeper-consumer|handler-bizkeeper|Consumer|客户端服务治理能力。|
 |bizkeeper-provider|handler-bizkeeper|Provider|服务端服务治理能力。|
-|qps-flowcontroll-consumer|handler-flowcontrol-qps|Consumer|客户端做qps限流。|
-|qps-flowcontroll-provider|handler-flowcontrol-qps|Provider|服务端做qps限流。|
+|qps-flowcontrol-consumer|handler-flowcontrol-qps|Consumer|客户端做qps限流。|
+|qps-flowcontrol-provider|handler-flowcontrol-qps|Provider|服务端做qps限流。|
 
 ## 使用处理链
 
