@@ -72,7 +72,7 @@ The above configurations have already set up in the code. All you need to do is 
 
 1. Visit <a>http://localhost:8888</a> . Input a positive height and weight and then click *Submit* button.
 
-2. Visit <a>http://localhost:9411</a> to checkout the status of distributed tracing and get the following figure.
+2. Visit <a>http://localhost:9411</a> to checkout the status of distributed tracing and get the following figure. It may take a few seconds for zipkin to collect the metrics. Then click the **Find Traces** button to get the details.
 
 ![Distributed tracing result](/assets/images/distributed-tracing-result.png){: .align-center}
 
