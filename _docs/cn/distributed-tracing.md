@@ -48,41 +48,61 @@ last_modified_at: 2017-09-03T10:01:43-04:00
        </dependency>
    ```
 
-4. 在docker容器环境下运行 *体质指数计算器* 微服务和*体质指数界面* 微服务：
+4. （可选）在docker容器环境下运行 *体质指数计算器* 微服务和*体质指数界面* 微服务：
 
-　　上述2.和 3.提供的是在非docker容器中运行的方式。下面介绍如何在docker容器中运行的方法。
+   上述2.和3.提供的是在非docker容器中运行的方式。下面介绍在docker容器中运行的方法。
 
-　　4.1 打包镜像和运行*体质指数计算器* 微服务
+   4.1 打包*体质指数计算器* 微服务的docker镜像并启动运行
 
-　　　假设zipkin在虚拟机192.168.100.101的9411中运行。
+   假设zipkin在虚拟机192.168.100.101的9411端口下运行。
+
+   Step1. 编写dockerfile:
+
+	```bash
+	FROM anapsix/alpine-java:latest
+	ADD bmi-calculator-0.3.0-SNAPSHOT.jar /bmi-calculator-tracing.jar
+	EXPOSE 7781
+	ENTRYPOINT java $JAVA_OPTS -jar bmi-calculator-tracing.jar "-Ptracing"
+	```
+
+   Step2. 打包docker镜像：
+
+	```bash
+	root@i-wzmhsx68:/bmi-calculator-tracing# ls
+	bmi-calculator-0.3.0-SNAPSHOT.jar  dockerfile
+	root@i-wzmhsx68:/bmi-calculator-tracing# docker build -t="bmi-calculator-tracing" .
+	```
+
+   Step3. 启动docker容器：
    
-　　　 dockerfile:
-
-   ```bash
-     FROM anapsix/alpine-java:latest
-     ADD bmi-calculator-0.3.0-SNAPSHOT.jar /bmi-calculator-tracing.jar
-     EXPOSE 7781
-     ENTRYPOINT java $JAVA_OPTS -jar bmi-calculator-tracing.jar "-Ptracing"
-   ```
-      打包image文件：
-
-   ```bash
-     root@i-wzmhsx68:/home/ubuntu/docker/bmi-calculator-tracing# ls
-     bmi-calculator-0.3.0-SNAPSHOT.jar  dockerfile
-     root@i-wzmhsx68:/home/ubuntu/docker/bmi-calculator-tracing# docker build -t="bmi-calculator-tracing" .
-   ```
-     运行docker容器：
-
-   ```bash
-     docker run -d -e JAVA_OPTS="-Dservicecomb.tracing.collector.address=http://192.168.100.101:9411" bmi-calculator-tracing
-   ```
+	```bash
+	docker run -d -e JAVA_OPTS="-Dservicecomb.tracing.collector.address=http://192.168.100.101:9411" bmi-calculator-tracing
+	```
 
 
-　　4.2 打包镜像和运行*体质指数页面* 微服务
+   4.2 打包*体质指数页面* 微服务的docker镜像并启动运行
    
-     用同样的方法打包镜像和运行*体质指数页面* 微服务。重新编写dokerfile，编译jar文件以及打包和运行docker镜像文件。
-    （注意将4.1中的bmi-calculator替换为bmi-webapp）。
-   
+   Step1. 编写dockerfile:
+
+	```bash
+	FROM anapsix/alpine-java:latest
+	ADD bmi-webapp-0.3.0-SNAPSHOT.jar /bmi-webapp-tracing.jar
+	ENTRYPOINT java $JAVA_OPTS -jar bmi-webapp-tracing.jar "-Ptracing"
+	```
+
+   Step2. 打包docker镜像：
+
+	```bash
+	root@i-wzmhsx68:/bmi-webapp-tracing# ls
+	bmi-webapp-0.3.0-SNAPSHOT.jar  dockerfile
+	root@i-wzmhsx68:/bmi-webapp-tracing# docker build -t="bmi-webapp-tracing" .
+	```
+
+   Step3. 启动docker容器：
+
+	```bash
+	docker run -d -e JAVA_OPTS="-Dservicecomb.tracing.collector.address=http://192.168.100.101:9411" bmi-webapp-tracing
+	```
 
 体质指数应用中已配置好了上述配置项，您只需执行以下几步即可：
 
