@@ -44,6 +44,62 @@ last_modified_at: 2017-09-03T10:01:43-04:00
        </dependency>
    ```
 
+4. （可选）在docker容器环境下运行 *体质指数计算器* 微服务和*体质指数界面* 微服务：
+
+   上述2.和3.提供的是在非docker容器中运行的方式。下面介绍在docker容器中运行的方法。
+
+   4.1 打包*体质指数计算器* 微服务的docker镜像并启动运行
+
+   假设zipkin在虚拟机192.168.100.101的9411端口下运行。
+
+   Step1. 编写dockerfile:
+
+	```bash
+	FROM anapsix/alpine-java:latest
+	ADD bmi-calculator-0.3.0-SNAPSHOT.jar /bmi-calculator-tracing.jar
+	EXPOSE 7781
+	ENTRYPOINT java $JAVA_OPTS -jar bmi-calculator-tracing.jar "-Ptracing"
+	```
+
+   Step2. 打包docker镜像：
+
+	```bash
+	root@i-wzmhsx68:/bmi-calculator-tracing# ls
+	bmi-calculator-0.3.0-SNAPSHOT.jar  dockerfile
+	root@i-wzmhsx68:/bmi-calculator-tracing# docker build -t="bmi-calculator-tracing" .
+	```
+
+   Step3. 启动docker容器：
+   
+	```bash
+	docker run -d -e JAVA_OPTS="-Dservicecomb.tracing.collector.address=http://192.168.100.101:9411" bmi-calculator-tracing
+	```
+
+
+   4.2 打包*体质指数页面* 微服务的docker镜像并启动运行
+   
+   Step1. 编写dockerfile:
+
+	```bash
+	FROM anapsix/alpine-java:latest
+	ADD bmi-webapp-0.3.0-SNAPSHOT.jar /bmi-webapp-tracing.jar
+	ENTRYPOINT java $JAVA_OPTS -jar bmi-webapp-tracing.jar "-Ptracing"
+	```
+
+   Step2. 打包docker镜像：
+
+	```bash
+	root@i-wzmhsx68:/bmi-webapp-tracing# ls
+	bmi-webapp-0.3.0-SNAPSHOT.jar  dockerfile
+	root@i-wzmhsx68:/bmi-webapp-tracing# docker build -t="bmi-webapp-tracing" .
+	```
+
+   Step3. 启动docker容器：
+
+	```bash
+	docker run -d -e JAVA_OPTS="-Dservicecomb.tracing.collector.address=http://192.168.100.101:9411" bmi-webapp-tracing
+	```
+
 体质指数应用中已配置好了上述配置项，您只需执行以下几步即可：
 
 1. 使用 Docker 运行 *Zipkin* 分布式追踪服务：
