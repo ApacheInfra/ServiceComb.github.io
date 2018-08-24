@@ -8,11 +8,11 @@ header:
   caption:
 excerpt: 'ServiceComb is a microservice framework with full functionality of service management, focus on rapidly development of microservices.
 
-<div class="excerpt-label">Latest release:</div>
+<div class="excerpt-label">    Github</div>
 <div class="button-group">
-<a href="http://apache.org/dyn/closer.cgi/incubator/servicecomb/incubator-servicecomb-java-chassis/1.0.0/" class="home-button btn--info">Java SDK v1.0.0</a>
-<a href="http://apache.org/dyn/closer.cgi/incubator/servicecomb/incubator-servicecomb-service-center/1.0.0/" class="home-button btn--info">Service Center v1.0.0</a>
-<a href="http://apache.org/dyn/closer.cgi/incubator/servicecomb/incubator-servicecomb-saga/0.2.0/" class="home-button btn--info">Saga v0.2.0</a>
+<a href="https://github.com/apache/incubator-servicecomb-java-chassis" class="home-button btn--info" target="_blank">Java Chassis</a>
+<a href="https://github.com/apache/incubator-servicecomb-service-center" class="home-button btn--info" target="_blank">Service Center</a>
+<a href="https://github.com/apache/incubator-servicecomb-saga" class="home-button btn--info" target="_blank">Saga</a>
 </div>'
 
 intro:
