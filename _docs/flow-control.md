@@ -20,7 +20,7 @@ Walk through [Develop microservice application in minutes](/docs/quick-start-bmi
 
    ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>handler-flowcontrol-qps</artifactId>
     </dependency>
    ```
@@ -28,7 +28,7 @@ Walk through [Develop microservice application in minutes](/docs/quick-start-bmi
 2. Add handler chain and configurations of flow control in `microservice.yaml` of *BMI calculator service*:
 
    ```yaml
-   cse:
+   servicecomb:
      handler:
        chain:
          Provider:

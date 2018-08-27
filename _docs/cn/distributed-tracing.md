@@ -20,7 +20,7 @@ last_modified_at: 2017-09-03T10:01:43-04:00
 
    ```xml
        <dependency>
-         <groupId>io.servicecomb</groupId>
+         <groupId>org.apache.servicecomb</groupId>
          <artifactId>handler-tracing-zipkin</artifactId>
        </dependency>
    ```
@@ -28,7 +28,7 @@ last_modified_at: 2017-09-03T10:01:43-04:00
 2. 在 *体质指数计算器* 的 `microservice.yaml` 文件中添加分布式追踪的处理链：
 
    ```yaml
-   cse:
+   servicecomb:
      handler:
        chain:
          Provider:
@@ -39,7 +39,7 @@ last_modified_at: 2017-09-03T10:01:43-04:00
 
    ```xml
        <dependency>
-         <groupId>io.servicecomb</groupId>
+         <groupId>org.apache.servicecomb</groupId>
          <artifactId>spring-cloud-zuul-zipkin</artifactId>
        </dependency>
    ```

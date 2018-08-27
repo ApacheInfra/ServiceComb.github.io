@@ -1,37 +1,57 @@
 ---
-title: "用SpringMVC开发微服务"
+title: "Develop Microservice with SpringMVC"
 lang: en
 ref: develop-with-springmvc
 permalink: /users/develop-with-springmvc/
-excerpt: "用SpringMVC开发微服务"
+excerpt: "Develop Microservice with SpringMVC"
 last_modified_at: 2017-08-15T15:01:43-04:00
 redirect_from:
   - /theme-setup/
 ---
 
 {% include toc %}
-## 概念阐述
+## Concept Description
 
-ServiceComb支持SpringMVC注解，允许使用SpringMVC风格开发微服务。
+ServiceComb supports Spring MVC remark and allows you to develop microservices in Spring MVC mode.
 
-## 开发示例
+## Development Example
 
-* **步骤 1** 定义服务接口。
+* **Step 1** Import dependencies into your maven project:
 
-   根据开发之前定义好的契约，编写Java业务接口，代码如下：
-
-   ```java
-   public interface Hello {
-     String sayHi(String name);
-     String sayHello(Person person);
-   }
+   ```xml
+    <dependencyManagement>
+     <dependencies>
+       <dependency>
+         <groupId>org.apache.servicecomb</groupId>
+         <artifactId>java-chassis-dependencies</artifactId>
+         <version>1.0.0-m1</version>
+         <type>pom</type>
+         <scope>import</scope>
+       </dependency>
+     </dependencies>
+    </dependencyManagement>
+    <dependencies>
+      <!--transport can optional import through endpoint setting in microservice.yaml, we import both rest and highway as example-->
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>transport-rest-vertx</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>transport-highway</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>provider-springmvc</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+      </dependency>
+    </dependencies>
    ```
 
-   该接口的位置需要与契约中x-java-interface所指定的路径一致。
-
-* **步骤 2** 实现服务。
-
-   使用Spring MVC注解开发业务代码，Hello的服务实现如下：
+* **Step 2** Implement the services. Spring MVC is used to describe the development of service code. The implementation of the Hello service is as follow:
 
    ```java
    import javax.ws.rs.core.MediaType;
@@ -39,66 +59,84 @@ ServiceComb支持SpringMVC注解，允许使用SpringMVC风格开发微服务。
    import org.springframework.web.bind.annotation.RequestMapping;
    import org.springframework.web.bind.annotation.RequestMethod;
    import org.springframework.web.bind.annotation.RequestParam;
-   import io.servicecomb.samples.common.schema.Hello;
-   import io.servicecomb.samples.common.schema.models.Person;
-   
+   import org.apache.servicecomb.samples.common.schema.models.Person;
+
    @RequestMapping(path = "/springmvchello", produces = MediaType.APPLICATION_JSON)
-   public class SpringmvcHelloImpl implements Hello {
-     @Override
+   public class SpringmvcHelloImpl {
      @RequestMapping(path = "/sayhi", method = RequestMethod.POST)
      public String sayHi(@RequestParam(name = "name") String name) {
    　  return "Hello " + name;
      }
 
-     @Override
      @RequestMapping(path = "/sayhello", method = RequestMethod.POST)
      public String sayHello(@RequestBody Person person) {
    　  return "Hello person " + person.getName();
    　}
    }
    ```
+   
+   **Note: PLEASE MAKE SURE TO MARK @RequestMapping ON YOUR PRODUCER(SpringmvcHelloImpl), OR THE PATH AND METHOD OF PUBLISHED WILL BE INCORRECT!**
+   
+   In this sample the Path of sayHi is `/springmvchello/sayhi`, and the Path of sayHello is `/springmvchello/sayhello`, if you wish them `/sayhi` and `/sayhello`, please change the setting of `@RequestMapping` on the SpringmvcHelloImpl to `@RequestMapping("/")`.
 
-* **步骤 3** 发布服务
-
-   在服务的实现类上打上注解@RestSchema，指定schemaId，表示该实现作为当前微服务的一个schema发布，代码如下：
+* **Step 3** Release the service. Add @RestSchema as the annotation of the service implementation class and specify schemaId, which indicates that the implementation is released as a schema of the current microservice. The code is as follows:
 
    ```java
-   import io.servicecomb.provider.rest.common.RestSchema;
+   import org.apache.servicecomb.provider.rest.common.RestSchema;
    // other code omitted
    @RestSchema(schemaId = "springmvcHello")
-   public class SpringmvcHelloImpl implements Hello {
+   public class SpringmvcHelloImpl {
      // other code omitted
    }
    ```
 
-   然后在`resources/META-INF/spring`目录下创建`springmvcHello.bean.xml`文件，命名规则为`\*.bean.xml`，配置spring进行服务扫描的base-package，文件内容如下：
+   Create the ```springmvcHello.bean.xml```  file(the file name format is *.bean.xml) in the ``` resources/META-INF/spring``` directory and configure base-package that performs scanning. The content of the file is as follows:
 
    ```xml
    <?xml version="1.0" encoding="UTF-8"?>
-   
+
    <beans xmlns="http://www.springframework.org/schema/beans"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns:context="http://www.springframework.org/schema/context"
           xsi:schemaLocation="http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-   
-       <context:component-scan base-package="io.servicecomb.samples.springmvc.provider"/>
+
+       <context:component-scan base-package="org.apache.servicecomb.samples.springmvc.provider"/>
    </beans>
    ```
 
-## 涉及API
+* **Step 4** Add service definition file:
 
-Spring MVC开发模式当前支持org.springframework.web.bind.annotation包下的如下注解，所有注解的使用方法参考[Spring MVC官方文档](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)。
+   Add [microservice.yaml](http://servicecomb.incubator.apache.org/cn/users/service-definition/) file into resources folder of your project.
 
-| 注解 | 位置 | 描述 |
-| :--- | :--- | :--- |
-| RequestMapping | schema/operation | 支持标注path/method/produces三种数据，operation默认继承schema上的produces |
-| GetMapping | schema/operation | 支持标注path/produces两种数据，operation默认继承schema上的produces |
-| PutMapping | schema/operation | 支持标注path/produces两种数据，operation默认继承schema上的produces |
-| PostMapping | schema/operation | 支持标注path/produces两种数据，operation默认继承schema上的produces |
-| DeleteMapping | schema/operation | 支持标注path/produces两种数据，operation默认继承schema上的produces |
-| PatchMapping | schema/operation | 支持标注path/produces两种数据，operation默认继承schema上的produces |
-| PathVariable | parameter | 从path中获取参数 |
-| RequestParam | parameter | 从query中获取参数 |
-| RequestHeader | parameter | 从header中获取参数 |
-| RequestBody | parameter | 从body中获取参数，每个operation只能有一个body参数 |
+* **Step 5** Add Main class:
+
+   ```java
+   import org.apache.servicecomb.foundation.common.utils.BeanUtils;
+   import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+
+   public class Application {
+     public static void main(String[] args) throws Exception {
+        //initializing log, loading bean(including its parameters), and registering service, more detail can be found here : http://servicecomb.incubator.apache.org/users/application-boot-process/
+        Log4jUtils.init();
+        BeanUtils.init();
+     }
+   }
+   ```
+
+## Involved APIs
+
+Currently, the Spring MVC development mode supports the following annotations in the org.springframework.web.bind.annotation package. For details about how to use the annotations, see [Spring MVC official documentation](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)。
+
+| Remarks        | Location         | Description                              |
+| :------------- | :--------------- | :--------------------------------------- |
+| RequestMapping | schema/operation | Data of path, method or produces is allowed. By default, an operation inherits produces from a schema. |
+| GetMapping     | schema/operation | Data of path or produces is allowed. By default, an operation inherits produces from a schema. |
+| PutMapping     | schema/operation | Data of path or produces is allowed, an operation inherits produces from a schema. |
+| PostMapping    | schema/operation | Data of path or produces is allowed, an operation inherits produces from a schema. |
+| DeleteMapping  | schema/operation | Data of path or produces is allowed, an operation inherits produces from a schema. |
+| PatchMapping   | schema/operation | Data of path or produces is allowed, an operation inherits produces from a schema. |
+| PathVariable   | parameter        | Obtain parameters from path.             |
+| RequestParam   | parameter        | Obtain parameters from query.            |
+| RequestHeader  | parameter        | Obtain parameters from header.           |
+| RequestBody    | parameter        | Obtain parameters from body. Each operation can have only one body parameter. |

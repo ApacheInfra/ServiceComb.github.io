@@ -23,9 +23,9 @@ Before we start, we need to add some common dependencies in the parent project o
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>io.servicecomb</groupId>
+        <groupId>org.apache.servicecomb</groupId>
         <artifactId>java-chassis-dependencies</artifactId>
-        <version>0.5.0</version>
+        <version>1.0.0-m1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -41,7 +41,7 @@ Before we start, we need to add some common dependencies in the parent project o
 ```
 **Notice**: The `java-chassis-dependencies` is imported as pom to unify version management of dependencies.
 
-Now we will introduce the detailed implementation of these two microservices. The full code is on [github](https://github.com/ServiceComb/ServiceComb-Java-Chassis/tree/master/samples/bmi).
+Now we will introduce the detailed implementation of these two microservices. The full code is on [github](https://github.com/apache/incubator-servicecomb-java-chassis/tree/master/samples/bmi).
 ### Implementation of calculator
 The calculator service provides capability of calculating BMI. It contains three parts:
 
@@ -73,7 +73,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 ```
 
 #### Service endpoint definition
-Service endpoint is defined to generate service contact. First of all, define the endpoint interface:
+Service endpoint is defined to generate service contract. First of all, define the endpoint interface:
 ```java
 public interface CalculatorEndpoint {
   double calculate(double height, double weight);
@@ -82,7 +82,7 @@ public interface CalculatorEndpoint {
 Introduce ServiceComb dependency:
 ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-provider</artifactId>
     </dependency>
 ```
@@ -110,13 +110,13 @@ public class CalculatorRestEndpoint implements CalculatorEndpoint {
 ServiceComb supports SpringMvc simplified annotations, e.g. `GetMapping`, since version 0.3.0.
 {: .notice--info}
 
-Note that ServiceComb can auto-generate service contract when annotating endpoints with `@RestSchema`. Then configure the endpoint in  `microservice.yaml` as follows to register the contact and microservice to service center.
+Note that ServiceComb can auto-generate service contract when annotating endpoints with `@RestSchema`. Then configure the endpoint in  `microservice.yaml` as follows to register the contract and microservice to service center.
 ```yaml
 APPLICATION_ID: bmi
 service_description:
   name: calculator
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://127.0.0.1:30100
@@ -153,15 +153,15 @@ The gateway service was implemented using the [Netflix Zuul](https://github.com/
 Introduce ServiceComb dependency:
 ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-discovery</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-servicecomb</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-cloud-zuul</artifactId>
     </dependency>
 ```
@@ -175,7 +175,7 @@ zuul:
   routes:
     calculator: /calculator/**
 
-# disable netflix eurkea since it's not used for service discovery
+# disable netflix eureka since it's not used for service discovery
 ribbon:
   eureka:
     enabled: false
@@ -189,7 +189,7 @@ APPLICATION_ID: bmi
 service_description:
   name: gateway
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://127.0.0.1:30100

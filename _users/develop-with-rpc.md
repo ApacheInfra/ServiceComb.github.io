@@ -1,31 +1,31 @@
 ---
-title: "使用RPC方式开发"
+title: "Develop with RPC"
 lang: en
 ref: develop-with-rpc
 permalink: /users/develop-with-rpc/
-excerpt: "使用RPC方式开发"
+excerpt: "Develop with RPC"
 last_modified_at: 2017-08-15T15:01:43-04:00
 redirect_from:
   - /theme-setup/
 ---
 
 {% include toc %}
-## 概念阐述
+## Concept Description
 
-RPC开发方式允许用户通过在服务接口上标注注解来生成服务提供者代理，从而进行服务的调用。
+The RPC development mode allows you to add annotations on the microservice APIs to generate the service provider agent. In this case, you can call microservices.
 
-## 示例代码
+## Sample Code
 
-只需要声明一个服务接口类型的成员，并且使用`@RpcReference`标注该成员，声明依赖的微服务及schemaId，即可进行服务调用，示例代码如下：
+To call a microservice, you only need to declare a member of a service API type and add the @RpcReference annotation for the member, the microservice that depends on the declaration, and the schemaID. The sample code is as follows.
 
 ```java
 import org.springframework.stereotype.Component;
 
-import io.servicecomb.foundation.common.utils.BeanUtils;
-import io.servicecomb.foundation.common.utils.Log4jUtils;
-import io.servicecomb.provider.pojo.RpcReference;
-import io.servicecomb.samples.common.schema.Hello;
-import io.servicecomb.samples.common.schema.models.Person;
+import org.apache.servicecomb.foundation.common.utils.BeanUtils;
+import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+import org.apache.servicecomb.provider.pojo.RpcReference;
+import org.apache.servicecomb.samples.common.schema.Hello;
+import org.apache.servicecomb.samples.common.schema.models.Person;
 
 @Component
 public class CodeFirstConsumerMain {
@@ -47,4 +47,44 @@ public class CodeFirstConsumerMain {
 }
 ```
 
-在以上代码中，服务消费者已经取得了服务提供者的服务接口`Hello`，并在代码中声明一个`Hello`类型的成员。通过在`hello`上使用`@RPCReference`注解指明微服务名称和schemaId，ServiceComb框架可以在程序启动时从服务中心获取到对应的服务提供者实例信息，并且生成一个代理注入到hello中，用户可以像调用本地类一样调用远程服务。
+In the preceding code, the microservice consumers have obtained the microservice API Hello of the microservice provider and declared a member of the Hello type. The annotation `@RPCReference` on `Hello` specifies the microservice name and schemaId, The ServiceComb framework can obtain information about isntances from a certain provider during program startup and generate an agent to insert to Hello. This allows you to call a remote service in the same way as you call a local class.
+
+### Additional explanation for consumer invocation
+In above example, in order to direct use `hello` in main function, we mark it as `static`. As a local field of `CodeFirstConsumerMain`, we recommend get it use these two way :
+
+#### First way: define cse:rpc-reference
+In your bean.xml, add `cse:rpc-reference` configuration:
+
+```xml
+<cse:rpc-reference id="hello" microservice-name="codefirst"
+    schema-id="codeFirstHello" interface="org.apache.servicecomb.samples.common.schema.Hello"></cse:rpc-reference>
+```
+
+Then use `BeanUtils.getBean` to get `Hello` provider:
+
+```java
+Hello hello = BeanUtils.getBean("hello");
+```
+
+#### Second way: get Bean, then use field
+First use `BeanUtils.getBean` to get Bean of `CodeFirstConsumerMain`:
+
+```java
+//Default instance name of Spring Bean is same as class name with first char low-cased
+CodeFirstConsumerMain consumer = BeanUtils.getBean("codeFirstConsumerMain");
+```
+
+Then get `hello` via Getter：
+
+```java
+public Hello getHello() {
+    return hello;
+}
+```
+
+```java
+Hello hello = consumer.getHello()
+```
+
+> NOTE:
+> `BeanUtils.getBean` has inner lock so performacen is low , we recommend use once and cache return as local field for future use(such as in constructor).

@@ -19,8 +19,8 @@ last_modified_at: 2017-09-06T00:50:43-55:00
 * Install ServiceComb Java Chassis(SDK) by executing the following commands.
 
    ```bash
-   git clone https://github.com/ServiceComb/ServiceComb-Java-Chassis.git
-   cd ServiceComb-Java-Chassis
+   git clone https://github.com/apache/incubator-servicecomb-java-chassis.git
+   cd incubator-servicecomb-java-chassis
    mvn clean install -DskipTests
    ```
 

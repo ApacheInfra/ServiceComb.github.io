@@ -12,6 +12,8 @@ t:
         url: /year-archive/
       - title: "FAQ"
         url: /faqs/
+      - title: "Downloads"
+        url: /release/
 
     docs:
       - title: "Quick Start"
@@ -27,13 +29,15 @@ t:
             url: /docs/quick-start-advance/flow-control/
           - title: Service Management
             url: /docs/quick-start-advance/service-management/
-          - title: Distributed Tracing 
+          - title: Distributed Tracing
             url: /docs/quick-start-advance/distributed-tracing/
       - title: "Data Consistency Solution"
         url: /docs/quick-start-dataconsistency/
 
     users:
       - title: User Guide
+        url: /users/
+
         children:
           - title: Java Chassis Architecture
             url: /users/
@@ -52,6 +56,8 @@ t:
             url: /users/develop-with-jax-rs/
           - title: Develop Microservice with Transparent RPC
             url: /users/develop-with-transparent-rpc/
+          - title: Develop Microservice with Spring Boot Starter
+            url: /users/develop-with-spring-boot-starter/
           - title: Service Interface Constraints
             url: /users/service-interface-constraints/
           - title: Service Configurations
@@ -78,22 +84,33 @@ t:
         children:
           - title: Develop and Test in Local Environment
             url: /users/local-develop-test/
-          - title: Use ServiceComb in Spring Boot
-            url: /users/use-servicecomb-in-spring-boot/
           - title: Distributed Tracing
             url: /users/distributed-tracing/
           - title: Customized Tracing
             url: /users/customized-tracing/
 
-      - title: Edging Service
-        children:
-          - title: confd and Nginx
-            url: /users/edging-service/nginx/
-          - title: Zuul
-            url: /users/edging-service/zuul/
+      - title: Dynamic Configurations
+        url: /users/dynamic-config/
 
-      - title: Metrics
-        url: /users/metrics/
+      - title: Open Service Capabilities
+        children:
+          - title: Confd and Nginx Edge Service
+            url: /users/edging-service/nginx/
+          - title: Zuul Edge Service
+            url: /users/edging-service/zuul/
+          - title: ServiceComb Java Chassis Edge Service
+            url: /users/edge-in-1.0.0-m1/
+          - title: Using the Service Center and Governance Center to Manage the Spring Cloud Application
+            url: /users/manage_springcloud_application_using_sc_and_gs/
+
+      - title: Monitor
+        children:
+          - title: Metrics-in-1.0.0-m1
+            url: /users/metrics-in-1.0.0-m1/
+          - title: Metrics-integration-with-prometheus-in-1.0.0-m1
+            url: /users/metrics-integration-with-prometheus-in-1.0.0-m1/
+          - title: HealthCheck
+            url: /users/healthcheck/
 
       - title: Deployment
         children:
@@ -108,16 +125,51 @@ t:
     developers:
       - title: "Developer Guide"
         url: /developers/
+      - title: "Team"
+        url: /developers/team/
+      - title: "Contributing to Apache ServiceComb"
+        url: /developers/contributing
+      - title: "Becoming A Committer of Apache ServiceComb"
+        url: /developers/becomming-a-commiter
       - title: "Develop Environment Setup"
         url: /developers/setup-develop-environment/
       - title: "Code Submit Guide"
         url: /developers/submit-codes/
+      - title: "How to Use JIRA"
+        url: /developers/use-jira/
+      - title: "Set Up Write Access for Committer"
+        url: /developers/setup-committer-rights/
+      - title: "How to Release in Apache"
+        url: /developers/release-guide/
+      - title: "How to verify Apache Release"
+        url: /developers/release-validation-guide/
 
     faqs:
       - title: "FAQ"
         url: /faqs/
       - title: "FAQ of Huawei Cloud"
         url: /faqs/faqs-huawei-cloud/
+
+    release:
+      - title: "Service-Center"
+        children:
+          - title: "Release Notes"
+            url: /release/service-center-release-notes/
+          - title: "Donwloads"
+            url: /release/service-center-downloads/
+      - title: "Java-Chassis"
+        children:
+          - title: "Release Notes"
+            url: /release/java-chassis-release-notes/
+          - title: "Downloads"
+            url: /release/java-chassis-downloads/
+      - title: "Saga"
+        children:
+          - title: "Release Notes"
+            url: /release/saga-release-notes/
+          - title: "Downloads"
+            url: /release/saga-downloads/
+
 
   cn:
     main:
@@ -131,12 +183,18 @@ t:
         url: /cn/year-archive/
       - title: "常见问题"
         url: /cn/faqs/
+      - title: "下载"
+        url: /cn/release/
 
     docs:
       - title: "快速入门"
         url: /cn/docs/quick-start/
       - title: "微服务应用快速开发"
         url: /cn/docs/quick-start-bmi/
+      - title: Java Chassis系统架构
+        url: /cn/docs/servicecomb-arc/
+      - title: 环境配置
+        url: /cn/docs/setup-environment/
       - title: "微服务开发进阶"
         url: /cn/docs/quick-start-advance/
         children:
@@ -152,88 +210,68 @@ t:
         url: /cn/docs/quick-start-dataconsistency/
 
     users:
-      - title: 用户手册
+      - title: Java Chassis
         children:
-          - title: Java Chassis系统架构
-            url: /cn/users/
-          - title: 环境配置
-            url: /cn/users/setup-environment/
+          - title: Java-chassis用户手册
+            url: https://docs.servicecomb.io/java-chassis/zh_CN/index.html
 
-      - title: 开发服务提供者
+      - title: Saga
         children:
-          - title: 服务定义
-            url: /cn/users/service-definition/
-          - title: 服务契约
-            url: /cn/users/service-contract/
-          - title: 用SpringMVC开发微服务
-            url: /cn/users/develop-with-springmvc/
-          - title: 用JAX-RS开发微服务
-            url: /cn/users/develop-with-jax-rs/
-          - title: 用透明RPC开发微服务
-            url: /cn/users/develop-with-transparent-rpc/
-          - title: 服务接口约束
-            url: /cn/users/service-interface-constraints/
-          - title: 服务配置
-            url: /cn/users/service-configurations/
-          - title: 通信协议
-            url: /cn/users/communicate-protocol/
-          - title: 程序启动逻辑
-            url: /cn/users/application-boot-process/
-          - title: 服务心跳
-            url: /cn/users/service-heartbeat/
+          - title: Saga用户手册
+            url: https://docs.servicecomb.io/saga/zh_CN/index.html
 
-      - title: 开发服务消费者
+      - title: ServiceCenter
         children:
-          - title: 使用Rest Template方式开发
-            url: /cn/users/develop-with-rest-template/
-          - title: 使用RPC方式开发
-            url: /cn/users/develop-with-rpc/
-          - title: 使用服务契约
-            url: /cn/users/use-service-contract/
-          - title: 调用控制
-            url: /cn/users/invoke-control/
-
-      - title: 通用开发
-        children:
-          - title: 本地开发与测试
-            url: /cn/users/local-develop-test/
-          - title: 在Spring Boot中使用ServiceComb
-            url: /cn/users/use-servicecomb-in-spring-boot/
-          - title: 分布式调用链追踪
-            url: /cn/users/distributed-tracing/
-          - title: 自定义调用链打点
-            url: /cn/users/customized-tracing/
-
-      - title: 服务能力开放
-        children:
-          - title: 使用confd和Nginx做边缘服务
-            url: /cn/users/edging-service/nginx/
-          - title: 使用Zuul做边缘服务
-            url: /cn/users/edging-service/zuul/
-
-      - title: 监控
-        url: /cn/users/metrics/
-
-      - title: 部署
-        children:
-          - title: 运行模式
-            url: /cn/users/run-mode/
-
-      - title: 微服务安全
-        children:
-          - title: 使用TLS通信
-            url: /cn/users/use-tls/
+          - title: ServiceCenter用户手册
+            url: https://docs.servicecomb.io/service-center/zh_CN/index.html
 
     developers:
       - title: "开发者指南"
         url: /cn/developers/
+      - title: "开发团队"
+        url: /cn/developers/team/
+      - title: "如何做贡献"
+        url: /cn/developers/contributing
+      - title: "成为Committer"
+        url: /developers/becomming-a-commiter
       - title: "开发环境准备"
         url: /cn/developers/setup-develop-environment/
       - title: "代码提交指南"
         url: /cn/developers/submit-codes/
-    
+      - title: "邮件列表订阅指南"
+        url: /cn/developers/subscribe-mail-list/
+      - title: "JIRA使用方法"
+        url: /cn/developers/use-jira/
+      - title: "Gitter 使用方法"
+        url: /cn/developers/use-gitter/
+      - title: "设置代码仓库写权限"
+        url: /cn/developers/setup-committer-rights/
+      - title: "Servicecomb发版指南"
+        url: /cn/developers/release-guide/
+      - title: "ServiceComb发版验证指南"
+        url: /cn/developers/release-validation-guide/
+
     faqs:
       - title: "常见问题"
         url: /cn/faqs/
       - title: "华为公有云常见问题"
         url: /cn/faqs/faqs-huawei-cloud/
+    release:
+      - title: "Service-Center"
+        children:
+          - title: "发布说明"
+            url: /cn/release/service-center-release-notes/
+          - title: "发布包"
+            url: /cn/release/service-center-downloads/
+      - title: "Java-Chassis"
+        children:
+          - title: "发布说明"
+            url: /cn/release/java-chassis-release-notes/
+          - title: "发布包"
+            url: /cn/release/java-chassis-downloads/
+      - title: "Saga"
+        children:
+          - title: "发布说明"
+            url: /cn/release/saga-release-notes/
+          - title: "发布包"
+            url: /cn/release/saga-downloads/

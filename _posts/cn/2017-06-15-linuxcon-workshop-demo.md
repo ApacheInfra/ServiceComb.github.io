@@ -93,7 +93,7 @@ public interface FibonacciEndpoint {
 
 ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-provider</artifactId>
     </dependency>
 
@@ -142,7 +142,7 @@ public class FibonacciRpcEndpoint implements FibonacciEndpoint {
 ```
 
 这里用 `@RestSchema` 和 `@RpcSchema` 注释两个端点后，`ServiceComb` 会自动生成对应的服务端点契约，根据如下
-`microsevice.yaml` 配置端点端口，并将契约和服务一起注册到[Service Center](https://github.com/ServiceComb/service-center)：
+`microsevice.yaml` 配置端点端口，并将契约和服务一起注册到[Service Center](https://github.com/apache/incubator-servicecomb-service-center)：
 
 ```yaml
 # all interconnected microservices must belong to an application wth the same ID
@@ -152,7 +152,7 @@ service_description:
   name: worker
   version: 0.0.1
 # service center address
-cse:
+servicecomb:
   service:
     registry:
       address: http://sc.servicecomb.io:30100
@@ -178,7 +178,7 @@ public class WorkerApplication {
 ## 告示栏 (Bulletin Board)
 **告示栏**提供为**门卫**、**技工**和**养蜂人**注册联系方式的设施，同时**经理**和**养蜂人**可通过此设施查询注册方的联系方式，以方便匹配能力的提供和消费。
 
-`Service Center` 提供契约和服务注册、发现功能，而且校验服务提供方和消费方的契约是否匹配，我们可以[下载](https://github.com/ServiceComb/service-center/releases)编译好的版本直接运行。
+`Service Center` 提供契约和服务注册、发现功能，而且校验服务提供方和消费方的契约是否匹配，我们可以[下载](https://github.com/apache/incubator-servicecomb-service-center/releases)编译好的版本直接运行。
 
 ## 养蜂人 (Beekeeper)
 **养蜂人**研究蜜蜂繁殖规律，计算每只蜜蜂 (雄蜂/雌蜂) 的祖先数量。因为蜜蜂繁殖规律和黄金分割数列相关，所以**养蜂人**同时消费**技工**提供的计算服务。
@@ -236,7 +236,7 @@ class BeekeeperServiceImpl implements BeekeeperService {
 ```
 
 这里我们用到之前定义的 `FibonacciCalculator` 接口，并希望通过这个接口远程调用**技工**服务端点。`@RpcReference`
-注释能帮助我们自动从[Service Center](https://github.com/ServiceComb/service-center)中获取
+注释能帮助我们自动从[Service Center](https://github.com/apache/incubator-servicecomb-service-center)中获取
 `microserviceName = "worker", schemaId = "fibonacciRpcEndpoint"` ， 即服务名为 `worker` 已经schema ID为
 `fibonacciRpcEndpoint`的端点：
 
@@ -321,7 +321,7 @@ service_description:
 # name of the declaring microservice
   name: beekeeper
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://sc.servicecomb.io:30100
@@ -337,7 +337,7 @@ cse:
       version-rule: 0.0.1
 ```
 
-这里我们需要定义 `cse.references.worker.version-rule` ，让配置名称中指向**技工**服务名 `worker` ，并匹配其版本号。
+这里我们需要定义 `servicecomb.references.worker.version-rule` ，让配置名称中指向**技工**服务名 `worker` ，并匹配其版本号。
 
 最后定义养蜂人服务应用入口：
 
@@ -458,7 +458,7 @@ service_description:
 # name of the declaring microservice
   name: doorman
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://sc.servicecomb.io:30100
@@ -482,7 +482,7 @@ cse:
 
 ```xml
   <dependency>
-    <groupId>io.servicecomb</groupId>
+    <groupId>org.apache.servicecomb</groupId>
     <artifactId>spring-boot-starter-discovery</artifactId>
   </dependency>
 ```
@@ -491,7 +491,7 @@ cse:
 当用户发送非登录请求时，我们首先需要验证用户合法，在如下服务中，我们通过**告示栏**获取**门卫**联系方式，
 然后发送用户token给**门卫**进行认证。
 
-`ServiceComb` 提供了相应 `RestTemplate` 实现查询[Service Center](https://github.com/ServiceComb/service-center)
+`ServiceComb` 提供了相应 `RestTemplate` 实现查询[Service Center](https://github.com/apache/incubator-servicecomb-service-center)
 中的服务注册信息，只需在地址中以如下格式包含被调用的服务名
 
 ```html
@@ -681,7 +681,7 @@ APPLICATION_ID: company
 service_description:
   name: manager
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://sc.servicecomb.io:30100

@@ -23,9 +23,9 @@ last_modified_at: 2017-09-04T10:01:43-04:00
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>io.servicecomb</groupId>
+        <groupId>org.apache.servicecomb</groupId>
         <artifactId>java-chassis-dependencies</artifactId>
-        <version>0.5.0</version>
+        <version>1.0.0-m1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -41,7 +41,7 @@ last_modified_at: 2017-09-04T10:01:43-04:00
 ```
 **注意**: `java-chassis-dependencies` 这个依赖是以pom的形式导入来统一项目中的依赖项的版本管理。
 
-下面将对这两个微服务的实现进行介绍，其代码已托管于[github](https://github.com/ServiceComb/ServiceComb-Java-Chassis/tree/master/samples/bmi)上。
+下面将对这两个微服务的实现进行介绍，其代码已托管于[github](https://github.com/apache/incubator-servicecomb-java-chassis/tree/master/samples/bmi)上。
 ### 体质指数计算器实现
 体质指数计算器提供运算服务，其实现分为三部分：
 
@@ -81,7 +81,7 @@ public interface CalculatorEndpoint {
 引入 **ServiceComb** 依赖：
 ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-provider</artifactId>
     </dependency>
 ```
@@ -116,7 +116,7 @@ APPLICATION_ID: bmi
 service_description:
   name: calculator
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://127.0.0.1:30100
@@ -153,15 +153,15 @@ public class CalculatorApplication {
 引入依赖：
 ```xml
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-discovery</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-boot-starter-servicecomb</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.servicecomb</groupId>
+      <groupId>org.apache.servicecomb</groupId>
       <artifactId>spring-cloud-zuul</artifactId>
     </dependency>
 ```
@@ -175,7 +175,7 @@ zuul:
   routes:
     calculator: /calculator/**
 
-# disable netflix eurkea since it's not used for service discovery
+# disable netflix eureka since it's not used for service discovery
 ribbon:
   eureka:
     enabled: false
@@ -189,12 +189,12 @@ APPLICATION_ID: bmi
 service_description:
   name: gateway
   version: 0.0.1
-cse:
+servicecomb:
   service:
     registry:
       address: http://127.0.0.1:30100
 ```
-此处将服务注册中心和Zuul相结合使能服务发现。
+此处将服务注册中心和Zuul相结合使其能发现服务。
 
 #### 服务启动入口
 服务启动入口也只需要声明启用 `ServiceComb` 和 `Zuul` 即可。

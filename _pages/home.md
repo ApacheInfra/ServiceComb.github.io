@@ -8,11 +8,11 @@ header:
   caption:
 excerpt: 'ServiceComb is a microservice framework with full functionality of service management, focus on rapidly development of microservices.
 
-<div class="excerpt-label">Latest release:</div>
+<div class="excerpt-label">    Github</div>
 <div class="button-group">
-<a href="https://github.com/ServiceComb/java-chassis/releases/tag/0.5.0" class="home-button btn--info">Java SDK v0.5.0</a>
-<a href="https://github.com/ServiceComb/service-center/releases/tag/0.5.0" class="home-button btn--info">Service Center v0.5.0</a>
-<a href="https://github.com/ServiceComb/ServiceComb-Saga/releases/tag/saga-0.0.2" class="home-button btn--info">Saga v0.0.2</a>
+<a href="https://github.com/apache/incubator-servicecomb-java-chassis" class="home-button btn--info" target="_blank">Java Chassis</a>
+<a href="https://github.com/apache/incubator-servicecomb-service-center" class="home-button btn--info" target="_blank">Service Center</a>
+<a href="https://github.com/apache/incubator-servicecomb-saga" class="home-button btn--info" target="_blank">Saga</a>
 </div>'
 
 intro:
@@ -20,13 +20,29 @@ intro:
 <div class='excerpt-title'>Latest News</div>
 
 <ul>
+    <li>
+    <a href='/release/'>[Milestone] Apache ServiceComb (incubating) Release Version 1.0.0</a>
+  </li>
+  <li>
+    <a href='/cn/docs/apache-servicecomb-day-slides/'>Microservice Meetup: Apache ServiceComb (incubating) Day slides </a>
+  </li>
   <li>
     <a href='/docs/quick-start-dataconsistency/'>ServiceComb now provides data consistency solutions(Saga) in microservice application.</a>
   </li>
-  <li class='line-end'>
-    <a href='/docs/linuxcon-workshop-demo/'>In the recent LinuxCon Beijing 2017 conference, ServiceComb organized a workshop to demonstrate how to build a cloud application using ServiceComb.</a>
+</ul>
+
+<ul>
+  <li>
+    <a href='/release/saga-downloads/'>Saga releases a new version 0.2.0</a>
   </li>
-</ul>"
+  <li>
+    <a href='https://www.youtube.com/watch?v=yrAneJvVC7A'>Service-Center Frontend can be used to test microservices schema directly from web.</a>
+  </li>
+    <li>
+    <a href='https://gitter.im/ServiceCombUsers/Lobby'>Join us at Gitter</a>
+  </li>
+</ul>
+"
 
 feature_row:
   - image_path: /assets/images/servicecomb-feature-openapi.png

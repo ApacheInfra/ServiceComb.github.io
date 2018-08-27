@@ -21,7 +21,7 @@ redirect_from:
    微服务与服务中心的连接可以通过将http改为https启用TLS通信，配置示例如下：
 
    ```yaml
-   cse:
+   servicecomb:
      service:
        registry:
          address: https://127.0.0.1:30100
@@ -31,7 +31,7 @@ redirect_from:
    服务提供者在配置服务监听地址时，可以通过在地址后面追加`?sslEnabled=true`开启TLS通信，示例如下：
 
    ```yaml
-   cse:
+   servicecomb:
      rest:
        address: 0.0.0.0:8080?sslEnabled=true
      highway:
@@ -63,7 +63,7 @@ ssl.[tag].[property]
 | ssl.keyStoreType | PKCS12 | - | 否 | 身份证书类型 | - |
 | ssl.keyStoreValue | - | - | 否 | 身份证书密码 | - |
 | ssl.crl | revoke.crl | - | 否 | 吊销证书文件 | - |
-| ssl.sslCustomClass | - | io.servicecomb.foundation.ssl.SSLCustom的实现类 | 否 | SSLCustom类的实现，用于开发者转换密码、文件路径等。 | - |
+| ssl.sslCustomClass | - | org.apache.servicecomb.foundation.ssl.SSLCustom的实现类 | 否 | SSLCustom类的实现，用于开发者转换密码、文件路径等。 | - |
 
 > **说明**：
 >
@@ -116,7 +116,7 @@ ssl.[tag].[property]
 
 microservice.yaml文件中启用TLS通信的配置示例如下：
 ```yaml
-cse:
+servicecomb:
   service:
     registry:
       address: https://127.0.0.1:30100
@@ -138,5 +138,5 @@ ssl.keyStore: server.p12
 ssl.keyStoreType: PKCS12
 ssl.keyStoreValue: Changeme_123
 ssl.crl: revoke.crl
-ssl.sslCustomClass: io.servicecomb.demo.DemoSSLCustom
+ssl.sslCustomClass: org.apache.servicecomb.demo.DemoSSLCustom
 ```

@@ -16,20 +16,42 @@ redirect_from:
 ServiceComb支持开发者使用JAX-RS注解，使用JAX-RS模式开发服务。
 
 ## 开发示例
+* **步骤 1** 添加依赖。
 
-* **步骤 1** 定义服务接口。
+   在Maven的pom.xml中添加所需的依赖：
 
-   根据开发之前定义好的契约，编写Java业务接口，代码如下：
-
-   ```java
-   public interface Hello {
-    　String sayHi(String name);
-    　String sayHello(Person person);
-   }
+   ```xml
+    <dependencyManagement>
+     <dependencies>
+       <dependency>
+         <groupId>org.apache.servicecomb</groupId>
+         <artifactId>java-chassis-dependencies</artifactId>
+         <version>1.0.0-m1</version>
+         <type>pom</type>
+         <scope>import</scope>
+       </dependency>
+     </dependencies>
+    </dependencyManagement>
+    <dependencies>
+      <!--transport根据microservice.yaml中endpoint发布需求选择，本例中两者都引入，也可以二选一-->
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>transport-rest-vertx</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>transport-highway</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.servicecomb</groupId>
+        <artifactId>provider-jaxrs</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+      </dependency>
+    </dependencies>
    ```
-
-   > **说明**：
-   该接口的位置需要与契约中x-java-interface所指定的路径一致。
 
 * **步骤 2** 实现服务。
 
@@ -40,34 +62,35 @@ ServiceComb支持开发者使用JAX-RS注解，使用JAX-RS模式开发服务。
    import javax.ws.rs.Path;
    import javax.ws.rs.Produces;
    import javax.ws.rs.core.MediaType;
-   import io.servicecomb.samples.common.schema.Hello;
-   import io.servicecomb.samples.common.schema.models.Person;
+   import org.apache.servicecomb.samples.common.schema.models.Person;
 
    @Path("/jaxrshello")
    @Produces(MediaType.APPLICATION_JSON)
-   public class JaxrsHelloImpl implements Hello {
+   public class JaxrsHelloImpl {
      @Path("/sayhi")
      @POST
-     @Override
      public String sayHi(String name) {
      　return "Hello " + name;
      }
 
      @Path("/sayhello")
      @POST
-     @Override
      public String sayHello(Person person) {
        return "Hello person " + person.getName();
      }
    }
    ```
+   
+   **注意：请一定在服务的实现类（本文档例子为JaxrsHelloImpl）上标记@Path，否则接口发布的Path和Method将会不正确！**
+   
+   本例sayHi的访问Path为`/jaxrshello/sayhi`，sayHello的访问Path为`/jaxrshello/sayhello`，如果希望他们的访问路径为`/sayhi`和`/sayhello`，直接设置JaxrsHelloImpl上的`@Path`为`@Path("/")`。
 
 * **步骤 3** 发布服务。
 
    在服务的实现类上打上注解`@RestSchema`，指定schemaId，表示该实现作为当前微服务的一个schema发布，代码如下：
 
    ```java
-   import io.servicecomb.provider.rest.common.RestSchema;
+   import org.apache.servicecomb.provider.rest.common.RestSchema;
    // other code omitted
    @RestSchema(schemaId = "jaxrsHello")
    public class JaxrsHelloImpl implements Hello {
@@ -79,14 +102,33 @@ ServiceComb支持开发者使用JAX-RS注解，使用JAX-RS模式开发服务。
 
    ```xml
    <?xml version="1.0" encoding="UTF-8"?>
-   <beans xmlns=" http://www.springframework.org/schema/beans " xmlns:xsi=" http://www.w3.org/2001/XMLSchema-instance "
-          xmlns:p=" http://www.springframework.org/schema/p " xmlns:util=" http://www.springframework.org/schema/util "
-          xmlns:cse=" http://www.huawei.com/schema/paas/cse/rpc "
-          xmlns:context=" http://www.springframework.org/schema/context "
-          xsi:schemaLocation=" http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
+   <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance "
+          xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+          xmlns:cse="http://www.huawei.com/schema/paas/cse/rpc"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
    
-       <context:component-scan base-package="io.servicecomb.samples.jaxrs.provider"/>
+       <context:component-scan base-package="org.apache.servicecomb.samples.jaxrs.provider"/>
    </beans>
+   ```
+
+* **步骤 4** 添加服务定义。
+
+   在resources目录中添加[microservice.yaml](http://servicecomb.incubator.apache.org/cn/users/service-definition/)。
+
+* **步骤 5** 添加Main启动类
+
+   ```java
+   import org.apache.servicecomb.foundation.common.utils.BeanUtils;
+   import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+
+   public class Application {
+     public static void main(String[] args) throws Exception {
+        //初始化日志， 加载Bean(包括它们的参数), 以及注册Service, 更多信息可以参见文档 : http://servicecomb.incubator.apache.org/cn/users/application-boot-process/
+        Log4jUtils.init();
+        BeanUtils.init();
+     }
+   }
    ```
 
 ## 涉及API
